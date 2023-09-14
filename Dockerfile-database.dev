@@ -7,6 +7,8 @@ RUN npm install ts-node
 
 COPY microservices/database-microservice/package*.json ./
 
+RUN npm install ts-node
+
 RUN npm clean-install
 
 COPY microservices/database-microservice .

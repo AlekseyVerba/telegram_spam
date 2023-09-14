@@ -3,9 +3,9 @@ FROM node:18
 
 WORKDIR /app/microservices/controller-microservice
 
-RUN npm install ts-node
-
 COPY microservices/controller-microservice/package*.json ./
+
+RUN npm install ts-node
 
 RUN npm clean-install
 
