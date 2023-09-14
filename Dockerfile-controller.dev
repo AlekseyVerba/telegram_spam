@@ -1,7 +1,7 @@
 # Base image
 FROM node:18
 
-WORKDIR /app/microservices/controller-microservice
+WORKDIR /app
 
 COPY microservices/controller-microservice/package*.json ./
 
