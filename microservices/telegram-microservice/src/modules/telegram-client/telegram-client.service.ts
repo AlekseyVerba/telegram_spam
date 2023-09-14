@@ -16,6 +16,7 @@ export class TelegramClientService {
       API_HASH,
       {
         connectionRetries: 5,
+        autoReconnect: false,
       },
     );
 
