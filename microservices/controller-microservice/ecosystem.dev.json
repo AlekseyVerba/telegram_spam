@@ -1,0 +1,15 @@
+{
+    "apps": [
+        {
+            "name": "controller",
+            "script": "dist/microservices/controller-microservice/src/main.js",
+            "watch": "dist/microservices/controller-microservice",
+            "source_map_support": true
+        },
+        {
+            "name": "BUILD:controller",
+            "script": "npx",
+            "args": "nest build --watch"
+        }
+    ]
+}

@@ -1,0 +1,20 @@
+# Base image
+FROM node:18
+
+WORKDIR /app/microservices/telegram-microservice
+
+RUN npm -g install ts-node
+
+COPY microservices/telegram-microservice/package*.json ./
+
+RUN npm clean-install
+
+COPY microservices/telegram-microservice .
+
+WORKDIR /app/interfaces
+
+COPY interfaces .
+
+WORKDIR /app/microservices/telegram-microservice
+
+CMD npm run start:dev

@@ -1,0 +1,15 @@
+{
+    "apps": [
+        {
+            "name": "database",
+            "script": "dist/microservices/database-microservice/src/main.js",
+            "watch": "dist/microservices/database-microservice",
+            "source_map_support": true
+        },
+        {
+            "name": "BUILD:database",
+            "script": "npx",
+            "args": "nest build --watch"
+        }
+    ]
+}

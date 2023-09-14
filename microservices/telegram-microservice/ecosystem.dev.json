@@ -1,0 +1,15 @@
+{
+    "apps": [
+        {
+            "name": "telegram",
+            "script": "dist/microservices/telegram-microservice/src/main.js",
+            "watch": "dist/microservices/telegram-microservice",
+            "source_map_support": true
+        },
+        {
+            "name": "BUILD:telegram",
+            "script": "npx",
+            "args": "nest build --watch"
+        }
+    ]
+}

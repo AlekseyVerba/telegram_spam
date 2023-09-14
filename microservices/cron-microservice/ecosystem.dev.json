@@ -1,0 +1,15 @@
+{
+    "apps": [
+        {
+            "name": "cron",
+            "script": "dist/microservices/cron-microservice/src/main.js",
+            "watch": "dist/microservices/cron-microservice",
+            "source_map_support": true
+        },
+        {
+            "name": "BUILD:cron",
+            "script": "npx",
+            "args": "nest build --watch"
+        }
+    ]
+}

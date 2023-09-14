@@ -1,0 +1,111 @@
+version: '3'
+
+services:
+  controller:
+    build: 
+      context: .
+      dockerfile: Dockerfile-controller.dev
+    restart: always
+    ports:
+      - "3010:3010"
+    env_file:
+      - ./microservices/controller-microservice/.env
+      - redis.env
+    volumes:
+      - ./microservices/controller-microservice:/app/microservices/controller-microservice
+      - ./interfaces:/app/interfaces
+      - upload:/app/microservices/controller-microservice/upload
+    depends_on:
+      - cache
+      - pg
+  database:
+    build: 
+      context: .
+      dockerfile: Dockerfile-database.dev
+    restart: always
+    ports:
+      - "3011"
+    env_file:
+      - ./microservices/database-microservice/.env
+      - ./microservices/database-microservice/db.env
+      - redis.env
+    volumes:
+      - ./microservices/database-microservice:/app/microservices/database-microservice
+      - /app/microservices/database-microservice/src/interfaces
+      - ./interfaces:/app/interfaces
+    depends_on:
+      - cache
+      - pg
+      - controller
+  telegram:
+    build: 
+      context: .
+      dockerfile: Dockerfile-telegram.dev
+    restart: always
+    ports:
+      - "3012"
+    env_file:
+      - redis.env
+    volumes:
+      - ./microservices/telegram-microservice:/app/microservices/telegram-microservice
+      - ./interfaces:/app/interfaces
+      - upload:/app/microservices/telegram-microservice/upload
+      - users:/app/microservices/telegram-microservice/users
+    depends_on:
+      - cache
+      - controller
+  mailer:
+    build: 
+      context: .
+      dockerfile: Dockerfile-mailer.dev
+    restart: always
+    ports:
+      - "3013"
+    env_file:
+      - ./microservices/mailer-microservice/.env
+      - redis.env
+    volumes:
+      - ./microservices/mailer-microservice:/app/microservices/mailer-microservice
+      - ./interfaces:/app/interfaces
+    depends_on:
+      - cache
+      - controller
+  cron:
+    build: 
+      context: .
+      dockerfile: Dockerfile-cron.dev
+    restart: always
+    ports:
+      - "3014"
+    env_file:
+      - ./microservices/cron-microservice/.env
+      - redis.env
+    volumes:
+      - ./microservices/cron-microservice:/app/microservices/cron-microservice
+      - ./interfaces:/app/interfaces
+    depends_on:
+      - cache
+      - controller
+    
+  cache:
+    image: redis:7.2.0-alpine
+    restart: always
+    ports:
+      - '6378:6379'
+    command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+    volumes: 
+      - cache:/data
+  pg:
+    image: postgres
+    restart: always
+    ports:
+      - "5431:5432"
+    env_file:
+      - ./microservices/database-microservice/db.env
+    volumes:
+      - pgdata_telegram:/var/lib/postgresql/data
+volumes:
+  cache:
+  pgdata_telegram:
+  users:
+  upload:
