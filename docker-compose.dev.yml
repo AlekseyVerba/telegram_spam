@@ -12,7 +12,6 @@ services:
       - ./microservices/controller-microservice/.env
       - redis.env
     volumes:
-      - ./microservices/controller-microservice:/app/microservices/controller-microservice
       - ./interfaces:/app/interfaces
       - upload:/app/microservices/controller-microservice/upload
     depends_on:
@@ -30,8 +29,6 @@ services:
       - ./microservices/database-microservice/db.env
       - redis.env
     volumes:
-      - ./microservices/database-microservice:/app/microservices/database-microservice
-      - /app/microservices/database-microservice/src/interfaces
       - ./interfaces:/app/interfaces
     depends_on:
       - cache
@@ -47,7 +44,6 @@ services:
     env_file:
       - redis.env
     volumes:
-      - ./microservices/telegram-microservice:/app/microservices/telegram-microservice
       - ./interfaces:/app/interfaces
       - upload:/app/microservices/telegram-microservice/upload
       - users:/app/microservices/telegram-microservice/users
@@ -65,7 +61,6 @@ services:
       - ./microservices/mailer-microservice/.env
       - redis.env
     volumes:
-      - ./microservices/mailer-microservice:/app/microservices/mailer-microservice
       - ./interfaces:/app/interfaces
     depends_on:
       - cache
@@ -81,7 +76,6 @@ services:
       - ./microservices/cron-microservice/.env
       - redis.env
     volumes:
-      - ./microservices/cron-microservice:/app/microservices/cron-microservice
       - ./interfaces:/app/interfaces
     depends_on:
       - cache
