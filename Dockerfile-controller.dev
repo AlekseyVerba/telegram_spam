@@ -1,7 +1,9 @@
 # Base image
 FROM node:18
 
-WORKDIR /app
+WORKDIR /app/microservices/controller-microservice
+
+RUN npm -g install ts-node
 
 COPY microservices/controller-microservice/package*.json ./
 

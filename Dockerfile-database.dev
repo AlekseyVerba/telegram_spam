@@ -3,11 +3,9 @@ FROM node:18
 
 WORKDIR /app/microservices/database-microservice
 
-RUN npm install ts-node
+RUN npm -g install ts-node
 
 COPY microservices/database-microservice/package*.json ./
-
-RUN npm install ts-node
 
 RUN npm clean-install
 

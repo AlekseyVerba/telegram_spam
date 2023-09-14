@@ -3,11 +3,9 @@ FROM node:18
 
 WORKDIR /app/microservices/telegram-microservice
 
-RUN npm install ts-node
+RUN npm -gzz install ts-node
 
 COPY microservices/telegram-microservice/package*.json ./
-
-RUN npm install ts-node
 
 RUN npm clean-install
 
