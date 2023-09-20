@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { join } from 'path';
 import { API_HASH, API_ID } from 'src/constants/api.constant';
-import { TelegramClient } from 'telegram';
+import { Logger, TelegramClient } from 'telegram';
+import { LogLevel } from 'telegram/extensions/Logger';
 
 @Injectable()
 export class TelegramClientService {
@@ -16,6 +17,7 @@ export class TelegramClientService {
       API_HASH,
       {
         autoReconnect: false,
+        baseLogger: new Logger(LogLevel.ERROR),
       },
     );
 
