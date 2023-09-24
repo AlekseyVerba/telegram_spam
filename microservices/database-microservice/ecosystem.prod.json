@@ -1,0 +1,8 @@
+{
+    "apps": [
+        {
+            "name": "database",
+            "script": "dist/microservices/database-microservice/src/main.js"
+        }
+    ]
+}

@@ -1,0 +1,8 @@
+{
+    "apps": [
+        {
+            "name": "mailer",
+            "script": "dist/microservices/mailer-microservice/src/main.js"
+        }
+    ]
+}

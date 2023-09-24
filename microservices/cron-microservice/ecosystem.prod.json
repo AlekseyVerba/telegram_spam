@@ -1,0 +1,8 @@
+{
+    "apps": [
+        {
+            "name": "cron",
+            "script": "dist/microservices/cron-microservice/src/main.js"
+        }
+    ]
+}

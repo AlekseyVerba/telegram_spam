@@ -1,0 +1,8 @@
+{
+    "apps": [
+        {
+            "name": "telegram",
+            "script": "dist/microservices/telegram-microservice/src/main.js"
+        }
+    ]
+}

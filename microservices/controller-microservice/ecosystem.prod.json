@@ -1,0 +1,8 @@
+{
+    "apps": [
+        {
+            "name": "controller",
+            "script": "dist/microservices/controller-microservice/src/main.js"
+        }
+    ]
+}
