@@ -9,7 +9,7 @@ export class TaskService {
   async doTask({ chats, file, message, user_uid }: ITask) {
     for (let chatIdx = 0; chats.length > chatIdx; chatIdx++) {
       if (chatIdx !== 0) {
-        await this.delay(10000);
+        await this.delay(300000);
       }
 
       await this.messageService.sendMessage({
