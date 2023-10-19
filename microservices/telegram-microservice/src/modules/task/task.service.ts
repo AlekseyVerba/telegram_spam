@@ -12,7 +12,7 @@ export class TaskService {
         await this.delay(300000);
       }
 
-      await this.messageService.sendMessage({
+      this.messageService.sendMessage({
         uid: user_uid,
         username: chats[chatIdx],
         message,

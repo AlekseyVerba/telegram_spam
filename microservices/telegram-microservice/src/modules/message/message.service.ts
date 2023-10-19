@@ -12,14 +12,20 @@ export class MessageService {
   async sendMessage({ uid, username, message, file }: ISendMessageTelegram) {
     const client = await this.telegramClientService.getClient(uid);
 
-    const result = await client.sendMessage(username, {
-      message,
-      parseMode: 'html',
-      file: file ? join(this.PATH_FILE_STATIC, file) : undefined,
-    });
+    console.log('username - ', username)
 
-    await client.destroy()
+    try {
+      await client.sendMessage(username, {
+        message,
+        parseMode: 'html',
+        file: file ? join(this.PATH_FILE_STATIC, file) : undefined,
+      });
+    } catch (err) {
+      console.log('error');
+    }
 
-    return result
+    await client.destroy();
+
+    return true;
   }
 }
