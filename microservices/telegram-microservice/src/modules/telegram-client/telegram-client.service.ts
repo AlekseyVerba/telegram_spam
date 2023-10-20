@@ -17,7 +17,7 @@ export class TelegramClientService {
       API_HASH,
       {
         connectionRetries: 5,
-        baseLogger: new Logger(LogLevel.WARN),
+        // baseLogger: new Logger(LogLevel.WARN),
       },
     );
 
