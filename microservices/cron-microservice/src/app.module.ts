@@ -3,6 +3,8 @@ import { TaskModule } from './modules/task/task.module'
 import { ClientsModule } from '@nestjs/microservices';
 import { RedisServiceOptions } from './redis.options';
 import { ScheduleModule } from '@nestjs/schedule';
+import { APP_FILTER } from '@nestjs/core';
+import { ExceptionsLoggerFilter } from './exceptions/exceptionsLogger.filter';
 
 @Module({
   imports: [
@@ -16,6 +18,11 @@ import { ScheduleModule } from '@nestjs/schedule';
     TaskModule
   ],
   controllers: [],
-  providers: [],
+  providers: [
+    {
+      provide: APP_FILTER,
+      useClass: ExceptionsLoggerFilter,
+    },
+  ],
 })
 export class AppModule {}

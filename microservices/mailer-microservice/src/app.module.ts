@@ -3,6 +3,8 @@ import { Module } from '@nestjs/common';
 import { AuthModule } from './modules/auth/auth.module'
 import { ClientsModule } from '@nestjs/microservices';
 import { RedisServiceOptions } from './redis.options';
+import { APP_FILTER } from '@nestjs/core';
+import { ExceptionsLoggerFilter } from './exceptions/exceptionsLogger.filter';
 
 @Module({
   imports: [
@@ -28,6 +30,11 @@ import { RedisServiceOptions } from './redis.options';
     AuthModule
   ],
   controllers: [],
-  providers: [],
+  providers: [
+    {
+      provide: APP_FILTER,
+      useClass: ExceptionsLoggerFilter,
+    },
+  ],
 })
 export class AppModule {}

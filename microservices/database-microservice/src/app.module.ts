@@ -8,6 +8,8 @@ import { UserToken } from './models/user_token.model';
 import { UserModule } from './modules/user/user.module';
 import { Task } from './models/task.model'
 import { TaskModule } from './modules/task/task.module'
+import { APP_FILTER } from '@nestjs/core';
+import { ExceptionsLoggerFilter } from './exceptions/exceptionsLogger.filter';
 
 @Module({
   imports: [
@@ -36,6 +38,11 @@ import { TaskModule } from './modules/task/task.module'
     TaskModule
   ],
   controllers: [],
-  providers: [],
+  providers: [
+    {
+      provide: APP_FILTER,
+      useClass: ExceptionsLoggerFilter,
+    },
+  ],
 })
 export class AppModule {}

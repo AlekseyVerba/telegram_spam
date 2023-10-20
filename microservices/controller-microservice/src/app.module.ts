@@ -10,6 +10,8 @@ import { UserTelegramModule } from './modules/user-telegram/user-telegram.module
 import { MessageTelegramModule } from './modules/message-telegram/message-telegram.module';
 import { FileModule } from './modules/file/file.module';
 import { TaskModule } from './modules/task/task.module';
+import { APP_FILTER } from '@nestjs/core';
+import { ExceptionsLoggerFilter } from './exceptions/exceptionsLogger.filter';
 
 @Module({
   imports: [
@@ -28,6 +30,12 @@ import { TaskModule } from './modules/task/task.module';
     TaskModule,
   ],
   controllers: [AppController],
+  providers: [
+    {
+      provide: APP_FILTER,
+      useClass: ExceptionsLoggerFilter,
+    },
+  ],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
